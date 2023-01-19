@@ -14,11 +14,9 @@ export default function App() {
       shopifyApiKey={process.env["SHOPIFY_API_KEY"]}
       api={api}
     >
-      <PolarisProvider>
-        <BrowserRouter>
-          <EmbeddedApp />
-        </BrowserRouter>
-      </PolarisProvider>
+      <BrowserRouter>
+        <EmbeddedApp />
+      </BrowserRouter>
     </GadgetProvider>
   );
 }
