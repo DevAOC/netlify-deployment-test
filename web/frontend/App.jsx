@@ -1,9 +1,11 @@
+import { BrowserRouter } from "react-router-dom";
+
 import {
   AppType,
   Provider as GadgetProvider,
+  useGadget,
 } from "@gadgetinc/react-shopify-app-bridge";
 import { api } from "./api";
-import { PolarisProvider } from "./components";
 
 export default function App() {
   return (
@@ -12,10 +14,17 @@ export default function App() {
       shopifyApiKey={process.env["SHOPIFY_API_KEY"]}
       api={api}
     >
-      <PolarisProvider>Hello, world!</PolarisProvider>
-      /** Gadget's Provider takes care of App Bridge authentication, you do not need
-      Shopify's default AppBridgeProvider. Feel free to use the default page
-      navigation that the CLI sets up for you! */
+      <PolarisProvider>
+        <BrowserRouter>
+          <EmbeddedApp />
+        </BrowserRouter>
+      </PolarisProvider>
     </GadgetProvider>
   );
 }
+
+const EmbeddedApp = () => {
+  const { isAuthenticated } = useGadget();
+
+  return isAuthenticated ? <>Hello, World</> : <>Loading...</>;
+};
