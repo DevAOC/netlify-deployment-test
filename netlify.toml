@@ -2,6 +2,5 @@
 # all contexts unless otherwise overridden by more specific contexts.
 
 [build]
-  base = "web/"
 
   publish = "web/frontend/dist"
