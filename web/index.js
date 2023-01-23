@@ -3,6 +3,7 @@ import { join } from "path";
 import * as fs from "fs";
 import express from "express";
 import serveStatic from "serve-static";
+const serverless = require("serverless-http");
 
 const __dirname = new URL(".", import.meta.url).pathname;
 
@@ -37,4 +38,5 @@ app.use("/*", async (_req, res, _next) => {
     .send(fs.readFileSync(join(STATIC_PATH, "index.html")));
 });
 
-app.listen(PORT);
+// app.listen(PORT);
+module.exports.handler = serverless(app);
